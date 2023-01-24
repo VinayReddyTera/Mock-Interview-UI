@@ -1,1 +1,75 @@
-<p>register works!</p>
+<div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100 p-t-50 p-b-90">
+        <form [formGroup]="registerForm" (ngSubmit)="register()" class="login100-form validate-form flex-sb flex-w">
+          <span class="login100-form-title p-b-51"> Register </span>
+
+          <div class="wrap-input100 validate-input m-b-16" >
+            <input class="input100" type="text" placeholder="First Name" formControlName="name">
+            <span class="focus-input100"></span>
+          </div>
+          <div *ngIf="registerForm.controls.name.errors?.required && registerForm.controls.name.dirty" class="required-message text-danger">
+               Required Field!
+           </div>
+
+           <div class="wrap-input100 validate-input m-b-16" >
+            <input class="input100" type="text" placeholder="Last Name" formControlName="lastName">
+            <span class="focus-input100"></span>
+          </div>
+          <div *ngIf="registerForm.controls.lastName.errors?.required && registerForm.controls.lastName.dirty" class="required-message text-danger">
+               Required Field!
+           </div>
+
+          <div class="wrap-input100 validate-input m-b-16" >
+            <input class="input100" type="text" placeholder="Username" formControlName="email">
+            <span class="focus-input100"></span>
+          </div>
+          <div *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.dirty" class="required-message text-danger">
+               Required Field!
+           </div>
+           <div *ngIf="registerForm.controls.email.errors?.emailError && !registerForm.controls.email.errors?.required && registerForm.controls.email.dirty" class="required-message text-danger">
+            {{registerForm.controls.email.errors.emailError.message}}
+           </div>
+
+           <div class="wrap-input100 validate-input m-b-16" >
+            <input class="input100" type="tel" placeholder="Mobile Number" formControlName="phoneNo">
+            <span class="focus-input100"></span>
+          </div>
+          <div *ngIf="registerForm.controls.phoneNo.errors?.required && registerForm.controls.phoneNo.dirty" class="required-message text-danger">
+               Required Field!
+           </div>
+
+          <div class="wrap-input100 validate-input m-b-16">
+            <input class="input100" type="password" id="password" placeholder="Password" formControlName="password">
+            <span class="focus-input100"></span>
+            <i class="fa fa-eye" *ngIf="!showPassword" aria-hidden="true" (click)="togglePassword()"></i>
+            <i class="fa fa-eye-slash" *ngIf="showPassword" aria-hidden="true" (click)="togglePassword()"></i>
+          </div>
+          <div *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.dirty" class="required-message text-danger">
+            Required Field!
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-16">
+            <input class="input100" type="password" id="confirmPassword" placeholder="Password" formControlName="confirmPassword">
+            <span class="focus-input100"></span>
+            <i class="fa fa-eye" *ngIf="!showPasswordconfirm" aria-hidden="true" (click)="togglePasswordconfirm()"></i>
+            <i class="fa fa-eye-slash" *ngIf="showPasswordconfirm" aria-hidden="true" (click)="togglePasswordconfirm()"></i>
+          </div>
+          <div *ngIf="registerForm.controls.confirmPassword.errors?.required && registerForm.controls.confirmPassword.dirty" class="required-message text-danger">
+            Required Field!
+        </div>
+        <div *ngIf="registerForm.errors?.passwordError && !registerForm.controls.confirmPassword.errors?.required && registerForm.controls.confirmPassword.dirty" class="required-message text-danger">
+            {{registerForm.errors.passwordError.message}}
+           </div>
+
+          <div class="container-login100-form-btn m-t-17">
+            <button type="submit" class="login100-form-btn"> Register </button>
+          </div>
+        </form>
+        <div class="login">
+            <a routerLink="/login"> Back to Login? </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div id="dropDownSelect1"></div> -->

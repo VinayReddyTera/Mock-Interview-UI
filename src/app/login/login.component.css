@@ -1,0 +1,15 @@
+.register{
+    padding:10px;
+    text-align: center;
+  }
+
+.fa-eye,.fa-eye-slash{
+  position: absolute;
+  bottom: 23px;
+  right: 20px;
+  cursor: pointer;
+}
+
+#password{
+  padding: 0 42px 0 38px;
+}
