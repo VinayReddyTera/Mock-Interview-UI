@@ -38,6 +38,12 @@
         <div class="register">
             <a routerLink="/register"> Register </a>
         </div>
+        <div *ngIf="successMessage" class="register text-success">
+          {{successMessage}}
+      </div>
+      <div *ngIf="errorMessage" class="register text-danger">
+        {{errorMessage}}
+    </div>
       </div>
     </div>
   </div>

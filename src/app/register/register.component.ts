@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder,FormControl,FormGroup,Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +12,11 @@ export class RegisterComponent {
   showPassword : boolean = false;
   showPasswordconfirm : boolean = false;
 
-  constructor(private fb:FormBuilder){}
+  constructor(private fb:FormBuilder, private route : Router, private registerService : ServiceService){}
 
   registerForm : any;
+  successMessage : any;
+  errorMessage : any;
 
   ngOnInit(){
     this.registerForm = this.fb.group({
@@ -68,6 +72,24 @@ export class RegisterComponent {
   }
 
   register(){
-    console.log(this.registerForm.value)
+    console.log(this.registerForm.value);
+    this.registerService.login(this.registerForm.value).subscribe(
+      (response : any) => {
+        this.errorMessage = null;
+        this.successMessage = "logged In SuccessFully";
+      },
+      (error : any) => {
+        console.log(error);
+        this.successMessage = null;
+        this.errorMessage = error.error.message;
+      }
+    ).add(()=>{
+      setTimeout(()=>{
+        this.successMessage = null;
+        this.errorMessage = null;
+        this.route.navigateByUrl('login')
+      },3000)
+    })
   }
+  
 }
