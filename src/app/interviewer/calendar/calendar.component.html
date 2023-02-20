@@ -1,0 +1,160 @@
+<div class='demo-app'>
+
+    <!-- <div class='demo-app-sidebar'>
+      <div class='demo-app-sidebar-section'>
+        <h2>Instructions</h2>
+        <ul>
+          <li>Select dates and you will be prompted to create a new event</li>
+          <li>Drag, drop, and resize events</li>
+          <li>Click an event to delete it</li>
+        </ul>
+      </div>
+      <div class='demo-app-sidebar-section'>
+        <label>
+          <input
+            type='checkbox'
+            [checked]='calendarVisible'
+            (change)='handleCalendarToggle()'
+          />
+          toggle whole calendar
+        </label>
+      </div>
+      <div class='demo-app-sidebar-section'>
+        <label>
+          <input
+            type='checkbox'
+            [checked]='calendarOptions.weekends'
+            (change)='handleWeekendsToggle()'
+          />
+          toggle weekends
+        </label>
+      </div>
+      <div class='demo-app-sidebar-section'>
+        <h2>All Events ({{currentEvents.length}})</h2>
+        <ul>
+          <li *ngFor='let event of currentEvents'>
+            <b>{{event.startStr}}</b>
+            <i>{{event.title}}</i>
+          </li>
+        </ul>
+      </div>
+    </div> -->
+  
+    <div class='demo-app-main'>
+      <full-calendar *ngIf='calendarVisible' [options]='calendarOptions'>
+        <ng-template #eventContent let-arg>
+          <b>{{ arg.timeText }}</b>
+          <i>{{ arg.event.title }}</i>
+        </ng-template>
+      </full-calendar>
+    </div>
+  
+  </div>
+
+  <div class="modal fade" id="enterAvailableTime" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="card">
+          <div class="card-header">
+            Enter Available Timings
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="eventAddForm" (ngSubmit)="addEvent()">
+              <div class="form-group">
+                <label for="title">Enter Title</label>
+                <input type="text" class="form-control" formControlName="title">
+              </div>
+              <div class="form-group">
+                <label>Repeat</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="repeat" (click)="selectRecurringEvent($event.target)" value="everyDay" id="flexRadioDefault1" formControlName="repeat">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Every Day
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="repeat" (click)="selectRecurringEvent($event.target)" value="everyWeekDay" id="flexRadioDefault2" formControlName="repeat">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Every Week Day
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="repeat" (click)="selectRecurringEvent($event.target)" value="everyWeekEnd" id="flexRadioDefault3" formControlName="repeat">
+                <label class="form-check-label" for="flexRadioDefault3">
+                  Every Week End
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="repeat" (click)="selectRecurringEvent($event.target)" value="0" id="flexRadioDefault4" formControlName="repeat">
+                <label class="form-check-label" for="flexRadioDefault4">
+                  None
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="1" formControlName="monday">
+                <label class="form-check-label" for="inlineCheckbox1">Monday</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="2" formControlName="tuesday">
+                <label class="form-check-label" for="inlineCheckbox2">Tuesday</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="3" formControlName="wednesday">
+                <label class="form-check-label" for="inlineCheckbox3">Wednesday</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="4" formControlName="thursday">
+                <label class="form-check-label" for="inlineCheckbox4">Thursday</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="5" formControlName="friday">
+                <label class="form-check-label" for="inlineCheckbox5">Friday</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="6" formControlName="saturday">
+                <label class="form-check-label" for="inlineCheckbox6">Saturday</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox0" value="0" formControlName="sunday">
+                <label class="form-check-label" for="inlineCheckbox0">Sunday</label>
+              </div>
+            </div>
+              <button class="btn btn-success" type="submit">Save Event</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade bd-example-modal-sm" id="deleteEvent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="card">
+          <div class="card-header">
+            Sure to delete event {{clickInfo?.event.title}}
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-row">
+                <div class="col offset-2">
+                  <button class="btn btn-danger modalButton" (click)="delete()" type="button" data-dismiss="modal" aria-label="Close">Yes</button>
+                </div>
+                <div class="col">
+                  <button class="btn btn-primary modalButton" type="button" data-dismiss="modal" aria-label="Close">No</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

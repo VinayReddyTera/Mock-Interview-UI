@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormControl,Validators } from '@angular/forms';
-import { ServiceService } from '../service.service';
+import { ServiceService } from '../../service.service';
 import jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
 
@@ -9,8 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-
+export class LoginComponent {
   showPassword : boolean = false;
   successMessage : any;
   errorMessage : any;
@@ -69,7 +68,7 @@ export class LoginComponent implements OnInit {
     //     this.errorMessage = null;
     //   },3000)
     // })
-    this.route.navigateByUrl('landing')
+    this.route.navigateByUrl('calendar')
   }
 
 }

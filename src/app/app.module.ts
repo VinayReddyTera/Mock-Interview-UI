@@ -3,34 +3,37 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { LandingComponent } from './landing/landing.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { ServiceService } from './service.service';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {TabViewModule} from 'primeng/tabview';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { AuthModule } from './auth/auth.module';
+import { InterviewerModule } from './interviewer/interviewer.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    ForgotPasswordComponent,
-    LandingComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     TabViewModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ConfirmDialogModule,
+    ToastModule,
+    AuthModule,
+    InterviewerModule,
+    UserModule,
+    AppRoutingModule
   ],
-  providers: [ServiceService],
+  providers: [ServiceService,ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

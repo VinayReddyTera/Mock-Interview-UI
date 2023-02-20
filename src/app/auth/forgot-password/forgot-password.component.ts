@@ -7,7 +7,6 @@ import { FormBuilder,FormControl,Validators } from '@angular/forms';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent {
-
   constructor(private fb:FormBuilder){}
 
   forgotPasswordForm : any;
