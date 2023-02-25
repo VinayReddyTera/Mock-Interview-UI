@@ -69,6 +69,15 @@
         <div class="login">
             <a routerLink="/login"> Back to Login? </a>
         </div>
+        <div class="login">
+          OR
+        </div>
+        <asl-google-signin-button type="standard" text="continue_with" width="390" logo_alignment="center"></asl-google-signin-button>
+    
+        <div class="facebook">
+          <img src="assets/facebook-logo.png" height="25px" width="25px" alt="facebook icon">
+          <button class="btn btn-block btn-primary" style="font-size: 14px;" (click)="signInWithFB()">Continue with FaceBook</button>
+        </div>
       </div>
     </div>
   </div>

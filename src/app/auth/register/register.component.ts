@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder,FormControl,FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServiceService } from '../../service.service';
+import { SocialAuthService } from "@abacritt/angularx-social-login";
+import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
+import { GoogleLoginProvider } from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-register',
@@ -11,14 +14,24 @@ import { ServiceService } from '../../service.service';
 export class RegisterComponent {
   showPassword : boolean = false;
   showPasswordconfirm : boolean = false;
-
-  constructor(private fb:FormBuilder, private route : Router, private registerService : ServiceService){}
+  user : any;
+  loggedIn : any;
+  
+  constructor(private fb:FormBuilder, private route : Router,
+    private registerService : ServiceService,private authService: SocialAuthService){}
 
   registerForm : any;
   successMessage : any;
   errorMessage : any;
 
   ngOnInit(){
+
+    this.authService.authState.subscribe((user)=>{
+      this.user = user;
+      this.loggedIn = (user != null)
+      console.log(this.user)
+    })
+
     this.registerForm = this.fb.group({
       name:['',[Validators.required]],
       lastName:['',[Validators.required]],
@@ -36,6 +49,10 @@ export class RegisterComponent {
         message : 'Invalid email format!'
       }
     }
+  }
+
+  signInWithFB(){
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
   }
 
   validatePassword(c:FormGroup){

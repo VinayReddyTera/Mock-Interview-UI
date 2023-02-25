@@ -1,28 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormControl,Validators } from '@angular/forms';
 import { ServiceService } from '../../service.service';
-import jwt_decode from "jwt-decode";
 import { Router } from '@angular/router';
+import { SocialAuthService } from "@abacritt/angularx-social-login";
+import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
+import { GoogleLoginProvider } from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   showPassword : boolean = false;
   successMessage : any;
   errorMessage : any;
+  user : any;
+  loggedIn : any;
 
-  constructor(private fb:FormBuilder,private loginServ : ServiceService,private route:Router){}
+  constructor(private fb:FormBuilder,private loginServ : ServiceService,
+    private route:Router,private authService: SocialAuthService){}
 
   loginForm : any;
 
   ngOnInit(){
+    
+    this.authService.authState.subscribe((user)=>{
+      this.user = user;
+      this.loggedIn = (user != null)
+      console.log(this.user)
+    })
+
     this.loginForm = this.fb.group({
       email:['',[Validators.required,this.validateEmail]],
       password:['',[Validators.required]]
     })
+  }
+
+  signInWithFB(){
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
   }
 
   validateEmail(c:FormControl){

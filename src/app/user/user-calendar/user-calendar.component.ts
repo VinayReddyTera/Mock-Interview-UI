@@ -55,6 +55,7 @@ export class UserCalendarComponent {
   eventAddForm : any;
 
   ngOnInit(): void {
+    document.querySelector('style')!.textContent += "@media screen and (max-width:767px) { .fc-toolbar.fc-header-toolbar {flex-direction:column;} .fc-toolbar-chunk { display: table-row; text-align:center; padding:5px 0; } }";
     this.eventAddForm = this.fb.group({
       title:['',[Validators.required]],
       repeat : ['0'],
@@ -91,8 +92,9 @@ export class UserCalendarComponent {
   }
 
   handleEventClick(clickInfo: EventClickArg) {
-    $('#deleteEvent').modal('show')
+    $('#selectSlot').modal('show')
     this.clickInfo = clickInfo;
+    console.log(clickInfo)
   }
 
   handleEvents(events: EventApi[]) {
@@ -104,39 +106,8 @@ export class UserCalendarComponent {
     return String(this.eventGuid++);
   }
 
-  delete(){
-    this.clickInfo.event.remove();
+  selectSlot(){
     this.clickInfo = null
-  }
-
-  selectRecurringEvent(data:any){
-    let everyDay = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']
-    if(data.value == "everyDay"){
-      for(let i in everyDay){
-        this.eventAddForm.controls[everyDay[i]].setValue(true);
-      }
-    }
-    else if(data.value == "0"){
-      for(let i in everyDay){
-        this.eventAddForm.controls[everyDay[i]].setValue(false);
-      }
-    }
-    else if(data.value == "everyWeekDay"){
-      for(let i=0; i<5; i++){
-        this.eventAddForm.controls[everyDay[i]].setValue(true);
-      }
-      for(let i=5; i<7; i++){
-        this.eventAddForm.controls[everyDay[i]].setValue(false);
-      }
-    }
-    else if(data.value == "everyWeekEnd"){
-      for(let i=0; i<5; i++){
-        this.eventAddForm.controls[everyDay[i]].setValue(false);
-      }
-      for(let i=5; i<7; i++){
-        this.eventAddForm.controls[everyDay[i]].setValue(true);
-      }
-    }
   }
 
 }

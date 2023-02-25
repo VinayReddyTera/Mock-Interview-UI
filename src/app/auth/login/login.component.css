@@ -13,3 +13,9 @@
 #password{
   padding: 0 42px 0 38px;
 }
+
+.facebook > img {
+  position: relative;
+  left: 75px;
+  top: 28px;
+}

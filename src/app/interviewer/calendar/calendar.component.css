@@ -49,3 +49,11 @@ h2 {
     position: relative;
     bottom: 20px;
   } */
+
+  .calendar{
+    height: 650px !important;
+  }
+
+  i{
+    overflow: hidden;
+  }

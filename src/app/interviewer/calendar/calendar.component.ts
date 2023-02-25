@@ -14,7 +14,7 @@ declare var $: any
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
 })
-export class CalendarComponent {
+export class CalendarComponent implements OnInit {
   calendarVisible = true;
   currentEvents: EventApi[] = []
   calendarOptions: CalendarOptions = {
@@ -56,6 +56,7 @@ export class CalendarComponent {
   eventAddForm: any;
 
   ngOnInit(): void {
+    document.querySelector('style')!.textContent += "@media screen and (max-width:767px) { .fc-toolbar.fc-header-toolbar {flex-direction:column;} .fc-toolbar-chunk { display: table-row; text-align:center; padding:5px 0; } }";
     this.eventAddForm = this.fb.group({
       title: ['', [Validators.required]],
       repeat: ['0'],
