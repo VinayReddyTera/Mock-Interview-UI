@@ -1,21 +1,42 @@
-.register{
-    padding:10px;
-    text-align: center;
-  }
-
 .fa-eye,.fa-eye-slash{
   position: absolute;
-  bottom: 23px;
+  top: 13px;
   right: 20px;
   cursor: pointer;
 }
 
-#password{
-  padding: 0 42px 0 38px;
+.password-wrapper{
+  position: relative;
 }
 
-.facebook > img {
+.logo{
+  height: 125px;
+  width: 200px
+}
+
+.signIn{
+  color: white;
+  background-color: #1e3563;
+}
+
+a{
+  color: #1e3563;
+}
+
+.social-icons{
+  display: flex;
   position: relative;
-  left: 75px;
-  top: 28px;
+  margin-bottom: 20px;
+}
+
+.fb-logo{
+  height: 31px;
+  width:31px;
+  position: absolute;
+  right: -40px;
+}
+
+asl-google-signin-button{
+  position: absolute;
+  right: 0px;
 }

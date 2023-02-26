@@ -1,84 +1,101 @@
-<div class="limiter">
-    <div class="container-login100">
-      <div class="wrap-login100 p-t-50 p-b-90">
-        <form [formGroup]="registerForm" (ngSubmit)="register()" class="login100-form validate-form flex-sb flex-w">
-          <span class="login100-form-title p-b-51"> Register </span>
+<div class="d-flex flex-column space-between-24 align-items-center vw-100 vh-100 p-16 pt-48">
+  <img class="logo" src="assets/logo.png" alt="logo">
 
-          <div class="wrap-input100 validate-input m-b-16" >
-            <input class="input100" type="text" placeholder="First Name" formControlName="name">
-            <span class="focus-input100"></span>
-          </div>
-          <div *ngIf="registerForm.controls.name.errors?.required && registerForm.controls.name.dirty" class="required-message text-danger">
-               Required Field!
-           </div>
-
-           <div class="wrap-input100 validate-input m-b-16" >
-            <input class="input100" type="text" placeholder="Last Name" formControlName="lastName">
-            <span class="focus-input100"></span>
-          </div>
-          <div *ngIf="registerForm.controls.lastName.errors?.required && registerForm.controls.lastName.dirty" class="required-message text-danger">
-               Required Field!
-           </div>
-
-          <div class="wrap-input100 validate-input m-b-16" >
-            <input class="input100" type="text" placeholder="Username" formControlName="email">
-            <span class="focus-input100"></span>
-          </div>
-          <div *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.dirty" class="required-message text-danger">
-               Required Field!
-           </div>
-           <div *ngIf="registerForm.controls.email.errors?.emailError && !registerForm.controls.email.errors?.required && registerForm.controls.email.dirty" class="required-message text-danger">
-            {{registerForm.controls.email.errors.emailError.message}}
-           </div>
-
-           <div class="wrap-input100 validate-input m-b-16" >
-            <input class="input100" type="tel" placeholder="Mobile Number" formControlName="phoneNo">
-            <span class="focus-input100"></span>
-          </div>
-          <div *ngIf="registerForm.controls.phoneNo.errors?.required && registerForm.controls.phoneNo.dirty" class="required-message text-danger">
-               Required Field!
-           </div>
-
-          <div class="wrap-input100 validate-input m-b-16">
-            <input class="input100" type="password" id="password" placeholder="Password" formControlName="password">
-            <span class="focus-input100"></span>
-            <i class="fa fa-eye" *ngIf="!showPassword" aria-hidden="true" (click)="togglePassword()"></i>
-            <i class="fa fa-eye-slash" *ngIf="showPassword" aria-hidden="true" (click)="togglePassword()"></i>
-          </div>
-          <div *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.dirty" class="required-message text-danger">
-            Required Field!
-        </div>
-
-        <div class="wrap-input100 validate-input m-b-16">
-            <input class="input100" type="password" id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
-            <span class="focus-input100"></span>
-            <i class="fa fa-eye" *ngIf="!showPasswordconfirm" aria-hidden="true" (click)="togglePasswordconfirm()"></i>
-            <i class="fa fa-eye-slash" *ngIf="showPasswordconfirm" aria-hidden="true" (click)="togglePasswordconfirm()"></i>
-          </div>
-          <div *ngIf="registerForm.controls.confirmPassword.errors?.required && registerForm.controls.confirmPassword.dirty" class="required-message text-danger">
-            Required Field!
-        </div>
-        <div *ngIf="registerForm.errors?.passwordError && !registerForm.controls.confirmPassword.errors?.required && registerForm.controls.confirmPassword.dirty" class="required-message text-danger">
-            {{registerForm.errors.passwordError.message}}
-           </div>
-
-          <div class="container-login100-form-btn m-t-17">
-            <button type="submit" class="login100-form-btn"> Register </button>
-          </div>
-        </form>
-        <div class="login">
-            <a routerLink="/login"> Back to Login? </a>
-        </div>
-        <div class="login">
-          OR
-        </div>
-        <asl-google-signin-button type="standard" text="continue_with" width="390" logo_alignment="center"></asl-google-signin-button>
-    
-        <div class="facebook">
-          <img src="assets/facebook-logo.png" height="25px" width="25px" alt="facebook icon">
-          <button class="btn btn-block btn-primary" style="font-size: 14px;" (click)="signInWithFB()">Continue with FaceBook</button>
-        </div>
-      </div>
+  <div class="d-flex flex-column space-between-8 align-items-center">
+    <h1 class="header-text mb-0">Sign up for Mock Interview</h1>
+    <div class="header-subtext text-muted">
+      <span>Already have an account?</span> &nbsp;
+      <a routerLink="/login">Sign In</a>
     </div>
   </div>
-  <!-- <div id="dropDownSelect1"></div> -->
+
+  <div class="content">
+
+    <form class="d-flex flex-column align-items-stretch space-between-16" [formGroup]="registerForm"
+      (ngSubmit)="register()">
+
+      <div class="form-group mb-0">
+        <input class="form-control" placeholder="First name" type="text" formControlName="firstName">
+      </div>
+
+      <div *ngIf="registerForm.controls.firstName.errors?.required && registerForm.controls.firstName.dirty"
+        class="required-message text-danger">
+        Required Field!
+      </div>
+
+      <div class="form-group mb-0">
+        <input class="form-control" placeholder="Last name" type="text" formControlName="lastName">
+      </div>
+      <div *ngIf="registerForm.controls.lastName.errors?.required && registerForm.controls.lastName.dirty"
+        class="required-message text-danger">
+        Required Field!
+      </div>
+
+      <div class="form-group mb-0">
+        <input class="form-control" placeholder="Email" type="email" formControlName="email">
+      </div>
+      <div *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.dirty"
+        class="required-message text-danger">
+        Required Field!
+      </div>
+      <div
+        *ngIf="registerForm.controls.email.errors?.emailError && !registerForm.controls.email.errors?.required && registerForm.controls.email.dirty"
+        class="required-message text-danger">
+        {{registerForm.controls.email.errors.emailError.message}}
+      </div>
+
+      <div class="form-group mb-0">
+        <input class="form-control" placeholder="Phone Number" type="tel" formControlName="phoneNo">
+      </div>
+      <div *ngIf="registerForm.controls.phoneNo.errors?.required && registerForm.controls.phoneNo.dirty"
+        class="required-message text-danger">
+        Required Field!
+      </div>
+
+      <div class="form-group mb-0 password-wrapper">
+        <input class="form-control" placeholder="Password" type="password" id="password" formControlName="password">
+        <i class="fa fa-eye" *ngIf="!showPassword" aria-hidden="true" (click)="togglePassword()"></i>
+        <i class="fa fa-eye-slash" *ngIf="showPassword" aria-hidden="true" (click)="togglePassword()"></i>
+      </div>
+      <div *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.dirty"
+        class="required-message text-danger">
+        Required Field!
+      </div>
+
+      <div class="form-group mb-0 password-wrapper">
+        <input class="form-control" placeholder="Confirm Password" type="password" id="confirmPassword"
+          formControlName="confirmPassword">
+        <i class="fa fa-eye" *ngIf="!showPasswordconfirm" aria-hidden="true" (click)="togglePasswordconfirm()"></i>
+        <i class="fa fa-eye-slash" *ngIf="showPasswordconfirm" aria-hidden="true" (click)="togglePasswordconfirm()"></i>
+      </div>
+      <div *ngIf="registerForm.controls.confirmPassword.errors?.required && registerForm.controls.confirmPassword.dirty"
+        class="required-message text-danger">
+        Required Field!
+      </div>
+      <div
+        *ngIf="registerForm.errors?.passwordError && !registerForm.controls.confirmPassword.errors?.required && registerForm.controls.confirmPassword.dirty"
+        class="required-message text-danger">
+        {{registerForm.errors.passwordError.message}}
+      </div>
+
+      <button class="btn btn-block signUp" type="submit">Sign Up</button>
+
+      <div class="d-flex flex-row align-items-center">
+        <hr class="m-0 flex-fill">
+        <span class="text-muted mx-8">or</span>
+        <hr class="m-0 flex-fill">
+      </div>
+
+      <div class="d-flex flex-column space-between-8 align-items-center">
+        <span class="header-text mb-0">Continue With</span>
+        <div class="social-icons">
+          <asl-google-signin-button type="icon" shape="circle"></asl-google-signin-button>
+          <img src="assets/facebook-logo.png" class="fb-logo" (click)="signInWithFB()" alt="facebook icon">
+        </div>
+      </div>
+
+      <p class="text-muted mb-0">By continuing with Google, Facebook, or Email, you agree to Mock Interview's <a
+          target="_blank">Terms of Service</a> and <a target="_blank">Privacy Policy</a>.</p>
+    </form>
+
+  </div>

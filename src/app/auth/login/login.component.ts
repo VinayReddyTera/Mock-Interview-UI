@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   loginForm : any;
 
   ngOnInit(){
-    
     this.authService.authState.subscribe((user)=>{
       this.user = user;
       this.loggedIn = (user != null)
