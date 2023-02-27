@@ -58,6 +58,9 @@ h2 {
     overflow: hidden;
   }
 
-  a{
-    color: #212529 !important;
+  @media (max-width:768px) {
+    .demo-app-main {
+      flex-grow: 1;
+      padding: 10px;
+    }
   }

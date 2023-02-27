@@ -9,12 +9,14 @@ import {FullCalendarModule} from '@fullcalendar/angular';
 import {TabViewModule} from 'primeng/tabview';
 import { UserLandingComponent } from './user-landing/user-landing.component';
 import { BookInterviewerComponent } from './book-interviewer/book-interviewer.component';
+import { UserNavbarComponent } from './user-navbar/user-navbar.component';
 
 @NgModule({
   declarations: [
     UserCalendarComponent,
     UserLandingComponent,
-    BookInterviewerComponent
+    BookInterviewerComponent,
+    UserNavbarComponent
   ],
   imports: [
     CommonModule,

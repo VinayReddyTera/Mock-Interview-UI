@@ -8,11 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import {FullCalendarModule} from '@fullcalendar/angular';
 import {TabViewModule} from 'primeng/tabview';
 import { InterviewerLandingComponent } from './interviewer-landing/interviewer-landing.component';
+import { InterviewerNavbarComponent } from './interviewer-navbar/interviewer-navbar.component';
 
 @NgModule({
   declarations: [
     CalendarComponent,
-    InterviewerLandingComponent
+    InterviewerLandingComponent,
+    InterviewerNavbarComponent
   ],
   imports: [
     CommonModule,

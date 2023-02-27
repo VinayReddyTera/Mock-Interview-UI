@@ -49,7 +49,6 @@ header {
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: .875rem;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
@@ -85,7 +84,7 @@ small {
   font-size: 80%
 }
 
-a {
+/* a {
   color: #1e9bff;
   text-decoration: none;
   background-color: transparent
@@ -94,7 +93,7 @@ a {
 a:hover {
   color: #0074d1;
   text-decoration: none
-}
+} */
 
 a:not([href]):not([class]) {
   color: inherit;
@@ -394,15 +393,15 @@ input[type=time].form-control {
   }
 }
 
-.btn:hover {
+/* .btn:hover {
   color: #212529;
   text-decoration: none
-}
+} */
 
-.btn:focus {
+/* .btn:focus {
   outline: 0;
   box-shadow: none
-}
+} */
 
 .btn:disabled {
   opacity: .65;
@@ -1386,20 +1385,6 @@ body {
 .btn>img,
 .btn>svg {
   margin-right: .3125rem
-}
-
-.btn:focus {
-  box-shadow: none !important
-}
-
-[class*=btn-outline] {
-  font-weight: 500;
-  border-color: #dee2e6 !important;
-  background-color: #fff
-}
-
-[class*=btn-outline]:hover {
-  background-color: #fff
 }
 
 [class*=btn-outline]:not(:disabled):not(.disabled).active,

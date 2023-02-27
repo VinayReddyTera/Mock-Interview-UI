@@ -1,0 +1,31 @@
+.close-wrapper{
+    position: relative;
+    height: 15px;
+}
+
+.close{
+    position: absolute;
+    right: -9px;
+    top: -15px;
+}
+
+.logout-text{
+    position: relative;
+    left: 6px;
+    height: 35px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.col{
+    position: relative;
+}
+
+.yes{
+    position: absolute;
+    right: 21px;
+}
+
+/* .no{
+    position: absolute;
+} */
