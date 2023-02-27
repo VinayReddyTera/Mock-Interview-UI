@@ -57,3 +57,7 @@ h2 {
   i{
     overflow: hidden;
   }
+
+  a{
+    color: #212529 !important;
+  }

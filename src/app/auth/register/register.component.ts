@@ -5,6 +5,7 @@ import { ServiceService } from '../../service.service';
 import { SocialAuthService } from "@abacritt/angularx-social-login";
 import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
 import { GoogleLoginProvider } from "@abacritt/angularx-social-login";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent {
   user : any;
   loggedIn : any;
   
-  constructor(private fb:FormBuilder, private route : Router,
+  constructor(private fb:FormBuilder, private route : Router,private activeRoute : ActivatedRoute,
     private registerService : ServiceService,private authService: SocialAuthService){}
 
   registerForm : any;
@@ -25,7 +26,10 @@ export class RegisterComponent {
   errorMessage : any;
 
   ngOnInit(){
-
+    let type = this.activeRoute.snapshot.params['type']
+    if(type != 'user' && type != 'interviewer'){
+      this.route.navigateByUrl('/login')
+    }
     this.authService.authState.subscribe((user)=>{
       this.user = user;
       this.loggedIn = (user != null)
@@ -38,7 +42,8 @@ export class RegisterComponent {
       email:['',[Validators.required,this.validateEmail]],
       phoneNo:['',[Validators.required]],
       password:['',[Validators.required]],
-      confirmPassword:['',[Validators.required]]
+      confirmPassword:['',[Validators.required]],
+      type : [type]
     },{validator:this.validatePassword})
   }
 
